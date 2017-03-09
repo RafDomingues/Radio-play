@@ -1,4 +1,10 @@
-var radioFlux = false, playingRadio = false, audio = false, currentVolume = 0.5, timeToSetVolume = false;
+var radioFlux = false, playingRadio = false, audio = false, currentVolume = 0.5, timeToSetVolume = false, port;
+chrome.extension.onConnect.addListener(function(portTmp) {
+  port = portTmp;
+  port.onDisconnect.addListener(function() {
+    port = undefined;
+  });
+});
 
 chrome.commands.onCommand.addListener(function(command) {
   switch(command) {
@@ -21,20 +27,26 @@ chrome.commands.onCommand.addListener(function(command) {
     case 'volume-down':
       if (playingRadio && audio !== false) {
         var newVolume = parseFloat(currentVolume - 0.2) <= 0 ? 0 : parseFloat(currentVolume - 0.2);
-        changeVolume(newVolume * 100);
-        if (!timeToSetVolume || timeToSetVolume + 3000 < Date.now()) {
-          chrome.storage.sync.set({radioVolume : newVolume * 100});
+        if (port !== undefined) {
+          port.postMessage(parseInt(newVolume * 100));
         }
+        changeVolume(newVolume * 100);
+        // if(!timeToSetVolume || parseInt(timeToSetVolume) + 1000 < Date.now()) {
+          chrome.storage.sync.set({radioVolume : parseInt(newVolume * 100)});
+        // }
         timeToSetVolume = Date.now();
       }
       break;
     case 'volume-up':
       if (playingRadio && audio !== false) {
         var upVolume = parseFloat(currentVolume + 0.2) > 1 ? 1 : parseFloat(currentVolume + 0.2);
-        changeVolume(upVolume * 100);
-        if (!timeToSetVolume || timeToSetVolume + 3000 < Date.now()) {
-          chrome.storage.sync.set({radioVolume : newVolume * 100});
+        if (port !== undefined) {
+          port.postMessage(parseInt(upVolume * 100));
         }
+        changeVolume(upVolume * 100);
+        // if(!timeToSetVolume || parseInt(timeToSetVolume) + 1000 < Date.now()) {
+          chrome.storage.sync.set({radioVolume : parseInt(upVolume * 100)});
+        // }
         timeToSetVolume = Date.now();
       }
       break;

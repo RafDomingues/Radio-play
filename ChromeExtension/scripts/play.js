@@ -7,6 +7,17 @@ $(function () {
 
   icon.hide();
 
+  var port = chrome.extension.connect({
+    name: "Sample Communication"
+  });
+
+  port.onMessage.addListener(function(msg) {
+    if(msg !== null) {
+      $('#volumeLabel').text('Volume ' + msg + '%');
+      $('#radioVolume').val(msg);
+    }
+  });
+
   $('#radioSelect').select2();
 
   $('#radioSelect').on('change', function () {
@@ -49,6 +60,7 @@ $(function () {
   });
 
   chrome.storage.sync.get("radioVolume", function (items) {
+    console.log(items);
     if (items.hasOwnProperty("radioVolume")) {
       /* Set volume label */
       $('#volumeLabel').text('Volume ' + items.radioVolume + '%');
