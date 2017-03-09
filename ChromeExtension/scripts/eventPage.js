@@ -1,4 +1,4 @@
-var radioFlux = false, playingRadio = false, audio;
+var radioFlux = false, playingRadio = false, audio = false;
 
 chrome.commands.onCommand.addListener(function(command) {
   switch(command) {
@@ -40,6 +40,12 @@ chrome.storage.sync.get("radioPlay", function (items) {
   }
 });
 
+chrome.storage.sync.get("radioVolume", function (items) {
+  if (items.hasOwnProperty('radioVolume') && audio !== false) {
+    changeVolume('radioVolume');
+  }
+});
+
 
 chrome.storage.onChanged.addListener((function (changes) {
   if (changes.hasOwnProperty('radioSelectedFlux') && changes.radioSelectedFlux.newValue.trim() == '') {
@@ -69,7 +75,16 @@ chrome.storage.onChanged.addListener((function (changes) {
       playingRadio = false;
     }
   }
+
+  if (changes.hasOwnProperty('radioVolume') && changes.radioVolume.newValue !== "" && audio !== false) {
+    changeVolume(changes.radioVolume.newValue);
+  }
 }));
+
+function changeVolume(volume) {
+  volume = parseFloat(volume / 100);
+  audio.volume = volume;
+}
 
 function changeFlux(flux) {
   audio.src = flux;

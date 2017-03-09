@@ -11,13 +11,16 @@
   <div id="mainContainer">
     <div id="selectContainer">
       <label for="radioSelect">
-        Choisi une station de radio
+        Choisis une station de radio
       </label>
       <select id="radioSelect" name="radioSelect">
         <option value="">&nbsp;</option>
       </select>
     </div>
     <div id="controlContainer">
+      <input type="range" value="50" class="sliderCustom" id="radioVolume" min="0" max="100" />
+      <label id="volumeLabel">Volume 50%</label>
+      <button id="muteVolume"><img src="img/mute.png" class="muteIcon" alt="mute icon"></button>
       <a href="#" title="Play video" class="play"></a>
     </div>
   </div>

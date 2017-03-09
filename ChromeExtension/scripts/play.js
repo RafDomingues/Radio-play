@@ -2,6 +2,7 @@ $(function () {
   var pathJson = 'radio_flux.json',
     radioFlux,
     selectedObject,
+    muted = false;
     icon = $('.play');
 
   icon.hide();
@@ -14,6 +15,29 @@ $(function () {
     chromeSet({radioSelectedFlux : selectedItem.val().trim()});
   });
 
+  $('#muteVolume').click(function () {
+    if(!muted) {
+      muted = $('#radioVolume').val();
+      $('#volumeLabel').text('Volume ' + 0 + '%');
+      $('#radioVolume').val(0);
+      chromeSet({radioVolume : 0});
+    } else {
+      chromeSet({radioVolume : muted});
+      $('#volumeLabel').text('Volume ' + muted + '%');
+      $('#radioVolume').val(muted);
+      muted = false;
+    }
+  });
+
+  $('#radioVolume').on('input change', function () {
+    $('#volumeLabel').text('Volume ' + $(this).val() + '%');
+  });
+
+  $('#radioVolume').on('change', function () {
+    chromeSet({radioVolume : $(this).val()});
+  });
+
+
   icon.click(function() {
     icon.toggleClass('active');
     if (icon.hasClass('active')) {
@@ -22,6 +46,14 @@ $(function () {
       chromeSet({radioPlay : 'false'});
     }
     return false;
+  });
+
+  chrome.storage.sync.get("radioVolume", function (items) {
+    if (items.hasOwnProperty("radioVolume")) {
+      /* Set volume label */
+      $('#volumeLabel').text('Volume ' + items.radioVolume + '%');
+      $('#radioVolume').val(items.radioVolume);
+    }
   });
 
   chrome.storage.sync.get("radioPlay", function (items) {
