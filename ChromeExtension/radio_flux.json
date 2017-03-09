@@ -1,5 +1,5 @@
 {
-  "NRJ" : "http://185.52.127.163/fr/30001/mp3_128.mp3?origine=fluxradios",
+  "NRJ" : "http://cdn.nrjaudio.fm/audio1/fr/30001/mp3_128.mp3?origine=fluxradios",
   "Fun Radio" : "http://streaming.radio.funradio.fr/fun-1-48-192",
   "Skyrock" : "http://icecast.skyrock.net/s/natio_mp3_128k",
   "RFM" : "http://rfm-live-mp3-128.scdn.arkena.com/rfm.mp3",
