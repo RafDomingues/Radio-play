@@ -6,11 +6,13 @@ chrome.commands.onCommand.addListener(function(command) {
       if(playingRadio) {
         stopRadio();
         playingRadio = false;
+        chrome.storage.sync.set({radioPlay : 'false'});
       } else {
         if (radioFlux !== undefined && radioFlux !== '') {
           playRadio(radioFlux);
         }
         playingRadio = true;
+        chrome.storage.sync.set({radioPlay : 'true'});
       }
       break;
   }
