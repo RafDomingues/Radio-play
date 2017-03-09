@@ -19,6 +19,18 @@
         "default": "Ctrl+Shift+Y"
       },
       "description": "Toggle Play-Pause"
+    },
+    "volume-up": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Up"
+      },
+      "description": "Up volume"
+    },
+    "volume-down": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Down"
+      },
+      "description": "Down volume"
     }
   },
   "permissions" : [

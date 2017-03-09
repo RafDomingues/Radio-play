@@ -1,4 +1,4 @@
-var radioFlux = false, playingRadio = false, audio = false;
+var radioFlux = false, playingRadio = false, audio = false, currentVolume = 0.5, timeToSetVolume = false;
 
 chrome.commands.onCommand.addListener(function(command) {
   switch(command) {
@@ -16,6 +16,26 @@ chrome.commands.onCommand.addListener(function(command) {
         }
         playingRadio = true;
         chrome.storage.sync.set({radioPlay : 'true'});
+      }
+      break;
+    case 'volume-down':
+      if (playingRadio && audio !== false) {
+        var newVolume = parseFloat(currentVolume - 0.2) <= 0 ? 0 : parseFloat(currentVolume - 0.2);
+        changeVolume(newVolume * 100);
+        if (!timeToSetVolume || timeToSetVolume + 3000 < Date.now()) {
+          chrome.storage.sync.set({radioVolume : newVolume * 100});
+        }
+        timeToSetVolume = Date.now();
+      }
+      break;
+    case 'volume-up':
+      if (playingRadio && audio !== false) {
+        var upVolume = parseFloat(currentVolume + 0.2) > 1 ? 1 : parseFloat(currentVolume + 0.2);
+        changeVolume(upVolume * 100);
+        if (!timeToSetVolume || timeToSetVolume + 3000 < Date.now()) {
+          chrome.storage.sync.set({radioVolume : newVolume * 100});
+        }
+        timeToSetVolume = Date.now();
       }
       break;
   }
@@ -82,8 +102,9 @@ chrome.storage.onChanged.addListener((function (changes) {
 }));
 
 function changeVolume(volume) {
-  volume = parseFloat(volume / 100);
+  volume = parseFloat(parseFloat(volume / 100).toFixed(2));
   audio.volume = volume;
+  currentVolume = volume;
 }
 
 function changeFlux(flux) {
