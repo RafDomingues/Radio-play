@@ -1,0 +1,111 @@
+#radioSelect{
+    width: 180px;
+    min-height: 30px;
+}
+
+.select2-container--default .select2-selection--single{
+    border: 2px solid #763568 !important;
+    min-height: 32px !important;
+    outline: none;
+}
+
+.select2-dropdown, .select2-container--default .select2-search--dropdown .select2-search__field{
+    border: 1px solid #763568 !important;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field{
+    outline: none;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b{
+    border-color: #763568 transparent transparent transparent !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected]{
+    background-color: #763568 !important;
+}
+
+select:active, select:hover, select:focus {
+    outline: none;
+}
+
+#selectContainer{
+    width: 180px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+#selectContainer label{
+    text-align: center;
+    font-family: cursive;
+    display: block;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+#selectContainer option{
+    font-family: cursive;
+}
+
+#mainContainer{
+    min-height: 300px;
+    overflow: hidden;
+    width: 250px;
+}
+
+.play {
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 60px solid #763568;
+    margin: 100px auto 50px auto;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    left: 10px;
+}
+.play:before {
+    content: '';
+    position: absolute;
+    top: -75px;
+    left: -115px;
+    bottom: -75px;
+    right: -35px;
+    border-radius: 50%;
+    border: 12px solid #2c3e50;
+    z-index: 2;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+}
+.play:after {
+    content: '';
+    opacity: 0;
+    transition: opacity 0.6s;
+    -webkit-transition: opacity 0.6s;
+    -moz-transition: opacity 0.6s;
+}
+.play:hover:before, .play:focus:before {
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+}
+.play.active {
+    border-color: transparent;
+}
+.play.active:after {
+    content: '';
+    opacity: 1;
+    width: 50px;
+    height: 80px;
+    background: #763568;
+    position: absolute;
+    right: 5px;
+    top: -40px;
+    border-left: 20px solid #763568;
+    box-shadow: inset 30px 0 0 0 white;
+}
