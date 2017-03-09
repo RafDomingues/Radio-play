@@ -1,5 +1,20 @@
 var radioFlux = false, playingRadio = false, audio;
 
+chrome.commands.onCommand.addListener(function(command) {
+  switch(command) {
+    case 'toggle-play-pause':
+      if(playingRadio) {
+        stopRadio();
+        playingRadio = false;
+      } else {
+        if (radioFlux !== undefined && radioFlux !== '') {
+          playRadio(radioFlux);
+        }
+        playingRadio = true;
+      }
+      break;
+  }
+});
 
 chrome.storage.sync.get("radioSelectedFlux", function (items) {
   if (items.hasOwnProperty('radioSelectedFlux') && items.radioSelectedFlux.trim() !== '') {
@@ -41,7 +56,9 @@ chrome.storage.onChanged.addListener((function (changes) {
       playRadio(radioFlux);
       playingRadio = true;
     } else {
-      stopRadio();
+      if (playingRadio) {
+        stopRadio();
+      }
       playingRadio = false;
     }
   }

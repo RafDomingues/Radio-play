@@ -13,6 +13,14 @@
     "scripts" : ["scripts/eventPage.js"],
     "persistent" : false
   },
+  "commands": {
+    "toggle-play-pause": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      },
+      "description": "Toggle Play-Pause"
+    }
+  },
   "permissions" : [
     "storage"
   ]
