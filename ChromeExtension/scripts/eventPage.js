@@ -58,8 +58,10 @@ chrome.storage.onChanged.addListener((function (changes) {
 
   if (changes.hasOwnProperty('radioPlay')) {
     if (changes.radioPlay.newValue.toLowerCase().trim() === 'true' && radioFlux !== false) {
-      playRadio(radioFlux);
-      playingRadio = true;
+      if(!playingRadio) {
+        playRadio(radioFlux);
+        playingRadio = true;
+      }
     } else {
       if (playingRadio) {
         stopRadio();
