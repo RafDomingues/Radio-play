@@ -9,6 +9,9 @@ chrome.commands.onCommand.addListener(function(command) {
         chrome.storage.sync.set({radioPlay : 'false'});
       } else {
         if (radioFlux !== undefined && radioFlux !== '') {
+          if(playingRadio) {
+            stopRadio();
+          }
           playRadio(radioFlux);
         }
         playingRadio = true;
