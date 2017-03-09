@@ -44,6 +44,7 @@ select:active, select:hover, select:focus {
 }
 
 #muteVolume:hover{
+    box-shadow: 1px 1px 5px #2c3e50;
     border: 4px solid #763568;
     transition: 0.6s;
 }
