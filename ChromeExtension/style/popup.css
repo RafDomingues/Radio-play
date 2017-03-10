@@ -233,3 +233,293 @@ input[type=range].sliderCustom:focus::-ms-fill-lower {
 input[type=range].sliderCustom:focus::-ms-fill-upper {
     background: #2c3e50;
 }
+
+
+.equalizer {
+    position: absolute;
+    bottom: 6.5vmin;
+    left: 6.5vmin;
+    display: block;
+    width: 1.7vmin;
+    background-color: #763568;
+    height: 1vmin;
+}
+
+.equalizer,
+.equalizer::before,
+.equalizer::after {
+    animation: equalize 1.25s steps(25, end) 0s infinite;
+}
+
+.equalizer::before,
+.equalizer::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 2.5vmin;
+    height: 7vmin;
+    width: 2vmin;
+    background-color: #763568;
+}
+
+.equalizer::before {
+    animation-name: equalize2;
+}
+
+.equalizer::after {
+    left: 5vmin;
+    animation-name: equalize3;
+}
+
+.stopAnime, .stopAnime::after, .stopAnime::before{
+    animation: inherit !important;
+    height: 1vmin !important;
+}
+
+@keyframes equalize {
+    0% {
+        height: 2vmin;
+    }
+    4% {
+        height: 1vmin;
+    }
+    8% {
+        height: 2vmin;
+    }
+    12% {
+        height: 3.5vmin;
+    }
+    16% {
+        height: 5vmin;
+    }
+    20% {
+        height: 6.5vmin;
+    }
+    24% {
+        height: 6vmin;
+    }
+    28% {
+        height: 5.5vmin;
+    }
+    32% {
+        height: 5.5vmin;
+    }
+    36% {
+        height: 4vmin;
+    }
+    40% {
+        height: 5vmin;
+    }
+    44% {
+        height: 5vmin;
+    }
+    48% {
+        height: 5.5vmin;
+    }
+    52% {
+        height: 6vmin;
+    }
+    56% {
+        height: 6.5vmin;
+    }
+    60% {
+        height: 6vmin;
+    }
+    64% {
+        height: 6vmin;
+    }
+    68% {
+        height: 5.5vmin;
+    }
+    72% {
+        height: 5vmin;
+    }
+    76% {
+        height: 5.5vmin;
+    }
+    80% {
+        height: 6vmin;
+    }
+    84% {
+        height: 6vmin;
+    }
+    88% {
+        height: 6.5vmin;
+    }
+    92% {
+        height: 5vmin;
+    }
+    96% {
+        height: 3.5vmin;
+    }
+    100% {
+        height: 2vmin;
+    }
+}
+@keyframes equalize2 {
+    0% {
+        height: 6vmin;
+    }
+    4% {
+        height: 6.5vmin;
+    }
+    8% {
+        height: 6vmin;
+    }
+    12% {
+        height: 6vmin;
+    }
+    16% {
+        height: 5.5vmin;
+    }
+    20% {
+        height: 5.5vmin;
+    }
+    24% {
+        height: 5.5vmin;
+    }
+    28% {
+        height: 6vmin;
+    }
+    32% {
+        height: 6vmin;
+    }
+    36% {
+        height: 6.5vmin;
+    }
+    40% {
+        height: 6.5vmin;
+    }
+    44% {
+        height: 6.5vmin;
+    }
+    48% {
+        height: 5.5vmin;
+    }
+    52% {
+        height: 4vmin;
+    }
+    56% {
+        height: 3vmin;
+    }
+    60% {
+        height: 4vmin;
+    }
+    64% {
+        height: 5vmin;
+    }
+    68% {
+        height: 5.5vmin;
+    }
+    72% {
+        height: 6.5vmin;
+    }
+    76% {
+        height: 6vmin;
+    }
+    80% {
+        height: 6vmin;
+    }
+    84% {
+        height: 5.5vmin;
+    }
+    88% {
+        height: 5.5vmin;
+    }
+    92% {
+        height: 4.5vmin;
+    }
+    96% {
+        height: 5.5vmin;
+    }
+    100% {
+        height: 6vmin;
+    }
+}
+@keyframes equalize3 {
+    0% {
+        height: 4.5vmin;
+    }
+    4% {
+        height: 3.5vmin;
+    }
+    8% {
+        height: 4.5vmin;
+    }
+    12% {
+        height: 5.5vmin;
+    }
+    16% {
+        height: 6.5vmin;
+    }
+    20% {
+        height: 7.5vmin;
+    }
+    24% {
+        height: 7vmin;
+    }
+    28% {
+        height: 5.5vmin;
+    }
+    32% {
+        height: 4.5vmin;
+    }
+    36% {
+        height: 4vmin;
+    }
+    40% {
+        height: 3.5vmin;
+    }
+    44% {
+        height: 2.5vmin;
+    }
+    48% {
+        height: 4vmin;
+    }
+    52% {
+        height: 5vmin;
+    }
+    56% {
+        height: 5.5vmin;
+    }
+    60% {
+        height: 6.5vmin;
+    }
+    64% {
+        height: 6vmin;
+    }
+    68% {
+        height: 5.5vmin;
+    }
+    72% {
+        height: 5.5vmin;
+    }
+    76% {
+        height: 5vmin;
+    }
+    80% {
+        height: 6vmin;
+    }
+    84% {
+        height: 6.5vmin;
+    }
+    88% {
+        height: 7vmin;
+    }
+    92% {
+        height: 6vmin;
+    }
+    96% {
+        height: 5vmin;
+    }
+    100% {
+        height: 4.5vmin;
+    }
+}
+.center-me {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    width: 20vmin;
+    height: 20vmin;
+}

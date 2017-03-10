@@ -53,7 +53,9 @@ $(function () {
     icon.toggleClass('active');
     if (icon.hasClass('active')) {
       chromeSet({radioPlay : 'true'});
+      playEqualizer();
     } else {
+      stopEqualizer();
       chromeSet({radioPlay : 'false'});
     }
     return false;
@@ -70,7 +72,10 @@ $(function () {
 
   chrome.storage.sync.get("radioPlay", function (items) {
     if (items.hasOwnProperty('radioPlay') && items.radioPlay === 'true') {
+      playEqualizer();
       icon.addClass('active');
+    } else if(items.hasOwnProperty('radioPlay') && items.radioPlay === 'false') {
+      stopEqualizer();
     }
   });
 
@@ -92,6 +97,14 @@ $(function () {
 
     icon.show();
   });
+
+  function playEqualizer(){
+    $('.equalizer').removeClass('stopAnime');
+  }
+
+  function stopEqualizer(){
+    $('.equalizer').addClass('stopAnime');
+  }
 
   function chromeSet(value) {
     chrome.storage.sync.set(value);
