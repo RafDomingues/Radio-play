@@ -519,7 +519,7 @@ input[type=range].sliderCustom:focus::-ms-fill-upper {
 .center-me {
     position: absolute;
     top: 10px;
-    left: 0px;
+    left: -5px;
     width: 20vmin;
     height: 20vmin;
 }
