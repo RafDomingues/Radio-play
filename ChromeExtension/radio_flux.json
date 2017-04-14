@@ -1,4 +1,13 @@
 {
+  "France Inter" : "http://direct.franceinter.fr/live/franceinter-midfi.mp3",
+  "France Info" : " http://direct.franceinfo.fr/live/franceinfo-midfi.mp3",
+  "BFM business" : "http://chai5she.cdn.dvmr.fr/bfmbusiness",
+  "BBC radio 1" : "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p",
+  "BBC radio 2" : "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p",
+  "BBC radio 3" : "http://open.live.bbc.co.uk/mediaselector/5/select/version/2.0/mediaset/http-icy-aac-lc-a/format/pls/vpid/bbc_radio_three.pls",
+  "BBC radio 4" : "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4fm_mf_p",
+  "BBC radio 5live" : "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio5live_mf_p",
+  "BBC radio 6" : "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_6music_mf_p",
   "NRJ" : "http://cdn.nrjaudio.fm/audio1/fr/30001/mp3_128.mp3?origine=fluxradios",
   "Fun Radio" : "http://streaming.radio.funradio.fr/fun-1-48-192",
   "Skyrock" : "http://icecast.skyrock.net/s/natio_mp3_128k",
