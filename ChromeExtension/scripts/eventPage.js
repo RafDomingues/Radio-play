@@ -15,10 +15,8 @@ chrome.commands.onCommand.addListener(function(command) {
         chrome.storage.sync.set({radioPlay : 'false'});
       } else {
         if (radioFlux !== undefined && radioFlux !== '') {
-          if(playingRadio) {
-            stopRadio();
-          }
           playRadio(radioFlux);
+          changeVolume(currentVolume * 100);
         }
         playingRadio = true;
         chrome.storage.sync.set({radioPlay : 'true'});
@@ -59,6 +57,11 @@ chrome.storage.sync.get("radioSelectedFlux", function (items) {
     chrome.storage.sync.get("radioPlay", function (itemsPlay) {
       if (itemsPlay.hasOwnProperty('radioPlay') && itemsPlay.radioPlay.toLowerCase() === 'true') {
         playRadio(radioFlux);
+        chrome.storage.sync.get("radioVolume", function (items) {
+          if (items.hasOwnProperty('radioVolume') && playingRadio !== false) {
+            changeVolume(items.radioVolume);
+          }
+        });
       }
     });
   } else {
@@ -73,11 +76,10 @@ chrome.storage.sync.get("radioPlay", function (items) {
 });
 
 chrome.storage.sync.get("radioVolume", function (items) {
-  if (items.hasOwnProperty('radioVolume') && audio !== false) {
-    changeVolume('radioVolume');
+  if (items.hasOwnProperty('radioVolume') && playingRadio !== false) {
+    changeVolume(items.radioVolume);
   }
 });
-
 
 chrome.storage.onChanged.addListener((function (changes) {
   if (changes.hasOwnProperty('radioSelectedFlux') && changes.radioSelectedFlux.newValue.trim() == '') {
@@ -107,7 +109,6 @@ chrome.storage.onChanged.addListener((function (changes) {
       playingRadio = false;
     }
   }
-
   if (changes.hasOwnProperty('radioVolume') && changes.radioVolume.newValue !== "" && audio !== false) {
     changeVolume(changes.radioVolume.newValue);
   }

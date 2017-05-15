@@ -1,12 +1,17 @@
 $(function () {
   var pathJson = 'radio_flux.json',
     radioFlux,
+    currentVolume = 50,
+    select2,
     selectedObject,
     muted = false;
     icon = $('.play');
 
   icon.hide();
+  stopEqualizer();
+  select2 = $('#radioSelect').select2();
 
+  // event communication
   var port = chrome.extension.connect({
     name: "Sample Communication"
   });
@@ -17,27 +22,14 @@ $(function () {
       $('#radioVolume').val(msg);
     }
   });
+  //
 
-  $('#radioSelect').select2();
-
+  // set the radio
   $('#radioSelect').on('change', function () {
     var selectedItem = $('#radioSelect').find(":selected");
     chromeSet({radioSelected : selectedItem.text().trim()});
+    chromeSet({radioVolume : currentVolume});
     chromeSet({radioSelectedFlux : selectedItem.val().trim()});
-  });
-
-  $('#muteVolume').click(function () {
-    if(!muted) {
-      muted = $('#radioVolume').val();
-      $('#volumeLabel').text('Volume ' + 0 + '%');
-      $('#radioVolume').val(0);
-      chromeSet({radioVolume : 0});
-    } else {
-      chromeSet({radioVolume : muted});
-      $('#volumeLabel').text('Volume ' + muted + '%');
-      $('#radioVolume').val(muted);
-      muted = false;
-    }
   });
 
   $('#radioVolume').on('input change', function () {
@@ -46,8 +38,26 @@ $(function () {
 
   $('#radioVolume').on('change', function () {
     chromeSet({radioVolume : $(this).val()});
+    currentVolume = $(this).val();
+
   });
 
+
+  $('#muteVolume').click(function () {
+    if(!muted) {
+      muted = $('#radioVolume').val();
+      $('#volumeLabel').text('Volume ' + 0 + '%');
+      $('#radioVolume').val(0);
+      chromeSet({radioVolume : 0});
+      currentVolume = 0;
+    } else {
+      chromeSet({radioVolume : muted});
+      $('#volumeLabel').text('Volume ' + muted + '%');
+      $('#radioVolume').val(muted);
+      muted = false;
+      currentVolume = muted;
+    }
+  });
 
   icon.click(function() {
     icon.toggleClass('active');
@@ -58,15 +68,17 @@ $(function () {
       stopEqualizer();
       chromeSet({radioPlay : 'false'});
     }
+    chromeSet({'radioVolume' : currentVolume});
     return false;
   });
 
   chrome.storage.sync.get("radioVolume", function (items) {
-    console.log(items);
     if (items.hasOwnProperty("radioVolume")) {
       /* Set volume label */
       $('#volumeLabel').text('Volume ' + items.radioVolume + '%');
       $('#radioVolume').val(items.radioVolume);
+      chromeSet({radioVolume : items.radioVolume});
+      currentVolume = items.radioVolume;
     }
   });
 
@@ -79,34 +91,46 @@ $(function () {
     }
   });
 
+  // Get the last radio selected
   chrome.storage.sync.get("radioSelected", function (items) {
-
     if (items.hasOwnProperty('radioSelected')) {
       selectedObject = items.radioSelected;
     }
-
-    $.getJSON(pathJson, function (data) {
-      $.each(data, function (key, val) {
-        if (selectedObject !== undefined && key !== undefined && key !== '' && key.trim() === selectedObject.trim()) {
-          $('#radioSelect').append('<option value="' + val + '" selected>' + key + '</option>');
-        } else {
-          $('#radioSelect').append('<option value="' + val + '">' + key + '</option>');
-        }
-      });
-    });
-
+    storeSelect2(pathJson, selectedObject, select2);
     icon.show();
   });
-
-  function playEqualizer(){
-    $('.equalizer').removeClass('stopAnime');
-  }
-
-  function stopEqualizer(){
-    $('.equalizer').addClass('stopAnime');
-  }
-
-  function chromeSet(value) {
-    chrome.storage.sync.set(value);
-  }
 });
+
+function storeSelect2(pathJson, radioSelected, select2){
+  var html;
+  // Get radio flux from json path
+  $.getJSON(pathJson, function (data) {
+    // create option elements
+    $.each(data, function (key, val) {
+      html += '<optgroup label="' + key + '">';
+      for (var i = 0; i < val.length; i++) {
+        if (radioSelected !== undefined && val[i].name.trim() === radioSelected.trim()) {
+          radioSelected = val[i].flux;
+        }
+        html += '<option value="' + val[i].flux + '">' + val[i].name + '</option>';
+      }
+      html += '</optgroup>';
+    });
+    $('#radioSelect').append(html);
+    if (radioSelected !== undefined) {
+      select2.val(radioSelected).trigger("change");
+    }
+  });
+}
+
+function playEqualizer(){
+  $('.equalizer').removeClass('stopAnime');
+}
+
+function stopEqualizer(){
+  $('.equalizer').addClass('stopAnime');
+}
+
+function chromeSet(value) {
+  chrome.storage.sync.set(value);
+}
