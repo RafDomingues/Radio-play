@@ -1,15 +1,61 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" ng-app="radio-play">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="scripts/popup.js"></script>
+  <script src="scripts/lib/jquery.min.js"></script>
+  <script src="scripts/lib/select2.min.js"></script>
+  <script src="scripts/lib/angular.min.js"></script>
+  <script src="scripts/lib/angular-drag-and-drop-lists.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style/options.css">
+  <link rel="stylesheet" type="text/css" href="style/select2.min.css">
   <link rel="icon" href="img/radio.png" />
   <title>Radio Play Options</title>
 </head>
-<body>
-salut
+<body ng-controller="OptionsController">
+  <h1 class="mainTitle"><img src="img/radio.png" class="radioImg" alt="radio play logo">Radio play Options</h1>
+
+  <div class="mainContainer">
+    <div class="radioListContainer">
+        <div dnd-list="groupList"
+            dnd-allowed-types="['radioList']"
+            dnd-external-sources="true">
+
+          <div ng-repeat="radioList in groupList"
+              dnd-draggable="radioList"
+              dnd-type="'radioList'"
+              dnd-effect-allowed="copyMove"
+              dnd-moved="groupList.splice($index, 1)"
+              dnd-callback="groupList.list.length">
+            <div>
+              <div class="arrow" ng-init="open[$index] = true" ng-click="toggleOpen($index)">
+                <img src="img/arrow_down.svg" ng-if="open[$index]" alt="arrow down">
+                <img src="img/arrow_up.svg" ng-if="open[$index] == false" alt="arrow down">
+              </div>
+              <img src="img/clear.svg" class="clear" alt="clear" ng-click="removeGroupName($index)">
+              <h3 class="groupName">{{radioList.group}}</h3>
+              <div dnd-list="radioList.list"
+                  dnd-allowed-types="['radio']"
+                  dnd-horizontal-list="true"
+                  dnd-external-sources="true"
+                  class="itemlist"
+                  ng-class="{openList : open[$index], closeList : open[$index] == false}">
+                <div ng-repeat="radio in radioList.list"
+                    dnd-draggable="radio"
+                    dnd-type="'radio'"
+                    dnd-moved="radioList.list.splice($index, 1)">
+                  <img src="img/clear.svg" class="clearRadio" alt="clear" ng-click="removeRadioName($parent.$index, $index)">
+                  <div class="radioName">{{radio.name}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
 </body>
+
+  <script src="scripts/option/app.js"></script>
 </html>

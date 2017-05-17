@@ -1,78 +1,84 @@
-{
-  "Francais": [
-    {
-      "name": "NRJ",
-      "flux": "http://cdn.nrjaudio.fm/audio1/fr/30001/mp3_128.mp3?origine=fluxradios"
-    },
-    {
-      "name": "Fun Radio",
-      "flux": "http://streaming.radio.funradio.fr/fun-1-48-192"
-    },
-    {
-      "name": "Skyrock",
-      "flux": "http://icecast.skyrock.net/s/natio_mp3_128k"
-    },
-    {
-      "name": "RFM",
-      "flux": "http://rfm-live-mp3-128.scdn.arkena.com/rfm.mp3"
-    },
-    {
-      "name": "Virgin Radio",
-      "flux": "http://vr-live-mp3-128.scdn.arkena.com/virginradio.mp3"
-    },
-    {
-      "name": "Chérie FM",
-      "flux": "http://cdn.nrjaudio.fm/audio1/fr/30201/mp3_128.mp3?origine=fluxradios"
-    },
-    {
-      "name": "Nostalgie France",
-      "flux": "http://cdn.nrjaudio.fm/audio1/fr/30601/mp3_128.mp3?origine=fluxradios"
-    },
-    {
-      "name": "RMC",
-      "flux": "http://rmc.scdn.arkena.com/rmc.mp3"
-    },
-    {
-      "name": "Europe 1",
-      "flux": "http://mp3lg4.tdf-cdn.com/9240/lag_180945.mp3"
-    },
-    {
-      "name": "France Inter",
-      "flux": "http://direct.franceinter.fr/live/franceinter-midfi.mp3"
-    },
-    {
-      "name": "France Info",
-      "flux": "http://direct.franceinfo.fr/live/franceinfo-midfi.mp3"
-    },
-    {
-      "name": "BFM business",
-      "flux": "http://chai5she.cdn.dvmr.fr/bfmbusiness"
-    }
-  ],
-  "Anglais": [
-    {
-      "name": "BBC radio 1",
-      "flux": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p"
-    },
-    {
-      "name": "BBC radio 2",
-      "flux": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p"
-    },
-    {
-      "name": "BBC radio 3",
-      "flux": "http://open.live.bbc.co.uk/mediaselector/5/select/version/2.0/mediaset/http-icy-aac-lc-a/format/pls/vpid/bbc_radio_three.pls"
-    },
-    {
-      "name": "BBC radio 4",
-      "flux": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4fm_mf_p"
-    },
-    {
-      "name": "BBC radio 5 Live",
-      "flux": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio5live_mf_p"
-    },
-    {
-      "name": "BBC radio 6",
-      "flux": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_6music_mf_p"
-    }
-  ]
-}
+[
+  {
+    "group" : "Francais",
+    "list" :  [
+      {
+        "name": "NRJ",
+        "flux": "http://cdn.nrjaudio.fm/audio1/fr/30001/mp3_128.mp3?origine=fluxradios"
+      },
+      {
+        "name": "Fun Radio",
+        "flux": "http://streaming.radio.funradio.fr/fun-1-48-192"
+      },
+      {
+        "name": "Skyrock",
+        "flux": "http://icecast.skyrock.net/s/natio_mp3_128k"
+      },
+      {
+        "name": "RFM",
+        "flux": "http://rfm-live-mp3-128.scdn.arkena.com/rfm.mp3"
+      },
+      {
+        "name": "Virgin Radio",
+        "flux": "http://vr-live-mp3-128.scdn.arkena.com/virginradio.mp3"
+      },
+      {
+        "name": "Chérie FM",
+        "flux": "http://cdn.nrjaudio.fm/audio1/fr/30201/mp3_128.mp3?origine=fluxradios"
+      },
+      {
+        "name": "Nostalgie France",
+        "flux": "http://cdn.nrjaudio.fm/audio1/fr/30601/mp3_128.mp3?origine=fluxradios"
+      },
+      {
+        "name": "RMC",
+        "flux": "http://rmc.scdn.arkena.com/rmc.mp3"
+      },
+      {
+        "name": "Europe 1",
+        "flux": "http://mp3lg4.tdf-cdn.com/9240/lag_180945.mp3"
+      },
+      {
+        "name": "France Inter",
+        "flux": "http://direct.franceinter.fr/live/franceinter-midfi.mp3"
+      },
+      {
+        "name": "France Info",
+        "flux": "http://direct.franceinfo.fr/live/franceinfo-midfi.mp3"
+      },
+      {
+        "name": "BFM business",
+        "flux": "http://chai5she.cdn.dvmr.fr/bfmbusiness"
+      }
+    ]
+  },
+  {
+    "group" : "Anglais",
+    "list" :  [
+      {
+        "name": "BBC radio 1",
+        "flux": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p"
+      },
+      {
+        "name": "BBC radio 2",
+        "flux": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p"
+      },
+      {
+        "name": "BBC radio 3",
+        "flux": "http://open.live.bbc.co.uk/mediaselector/5/select/version/2.0/mediaset/http-icy-aac-lc-a/format/pls/vpid/bbc_radio_three.pls"
+      },
+      {
+        "name": "BBC radio 4",
+        "flux": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4fm_mf_p"
+      },
+      {
+        "name": "BBC radio 5 Live",
+        "flux": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio5live_mf_p"
+      },
+      {
+        "name": "BBC radio 6",
+        "flux": "http://bbcmedia.ic.llnwd.net/stream/bbcmedia_6music_mf_p"
+      }
+    ]
+  }
+]

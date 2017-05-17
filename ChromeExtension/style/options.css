@@ -1,0 +1,112 @@
+body, html{
+    height: 100%;
+    padding-top: 1%;
+    margin: 0;
+    font-family: Cursive;
+    background-color: #D2D7D3;
+}
+
+.radioImg{
+    height:100px;
+    width:100px;
+    vertical-align: bottom;
+}
+
+.mainTitle{
+    text-align: center;
+    color: #2c3e50;
+    font-size: 50px;
+}
+
+.mainContainer{
+    box-shadow: 0px 2px 4px 0px rgba(85, 98, 112, 0.8);
+    width: 800px;
+    margin: 0 auto;
+    background-color: #763568;
+}
+
+.radioListContainer{
+    box-sizing: border-box;
+    padding: 50px;
+    width: 100%;
+    min-height: 800px;
+}
+
+.groupName, .radioName{
+    cursor: -webkit-grab;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    color: white;
+    border-radius: 2px;
+    padding-left: 20px;
+}
+
+.groupName:hover, .radioName:hover{
+    background-color: black;
+}
+
+.radioName {
+    justify-content: right;
+    font-size: 10px;
+    background-color: rgba(44, 62, 80, 0.8);
+    margin-left: 60px;
+    margin-bottom: 2px;
+    height: 15px;
+}
+
+.groupName{
+    margin-bottom: 5px;
+    font-size: 12px;
+    background-color: #2c3e50;
+    height: 20px;
+}
+
+li.dndPlaceholder{
+    list-style: none;
+    padding: 5px;
+    border-radius: 3px;
+    opacity: 0.5;
+    height:20px;
+    background-color: #2c3e50;
+}
+
+.arrow{
+    cursor: pointer;
+    float:left;
+    margin-right: 8px;
+}
+
+.arrow img{
+    height: 30px;
+}
+
+.openList{
+    display: block;
+}
+
+.closeList {
+    display: none;
+}
+
+.clear{
+    cursor: pointer;
+    float: right;
+    height: 30px;
+}
+
+.clear:hover + .groupName{
+    background-color: black;
+}
+
+.clearRadio{
+    position: relative;
+    top: 4px;
+    cursor: pointer;
+    float: right;
+    height: 20px;
+ }
+
+.clearRadio:hover + .radioName{
+    background-color: black;
+}

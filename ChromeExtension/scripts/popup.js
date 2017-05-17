@@ -107,12 +107,12 @@ function storeSelect2(pathJson, radioSelected, select2){
   $.getJSON(pathJson, function (data) {
     // create option elements
     $.each(data, function (key, val) {
-      html += '<optgroup label="' + key + '">';
-      for (var i = 0; i < val.length; i++) {
-        if (radioSelected !== undefined && val[i].name.trim() === radioSelected.trim()) {
-          radioSelected = val[i].flux;
+      html += '<optgroup label="' + val.group + '">';
+      for (var i = 0; i < val.list.length; i++) {
+        if (radioSelected !== undefined && val.list[i].name.trim() === radioSelected.trim()) {
+          radioSelected = val.list[i].flux;
         }
-        html += '<option value="' + val[i].flux + '">' + val[i].name + '</option>';
+        html += '<option value="' + val.list[i].flux + '">' + val.list[i].name + '</option>';
       }
       html += '</optgroup>';
     });
