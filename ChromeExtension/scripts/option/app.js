@@ -1,5 +1,6 @@
 angular.module('radio-play', ['dndLists'])
   .controller('OptionsController', function($http, $scope) {
+    var savedGroupList;
     $scope.open = {};
     $scope.toggleOpen = function (index) {
       if ($scope.open[index] !== undefined) {
@@ -21,9 +22,20 @@ angular.module('radio-play', ['dndLists'])
       $scope.groupList[parentIndex].list.splice(index, 1);
     };
 
-    $http.get('radio_flux.json')
-      .then(function (data) {
-        $scope.groupList = data.data;
-        $scope.savedGroupList = data.data;
-      });
+    $scope.saveObject = function () {
+      chrome.storage.sync.set({radioJson : $scope.groupList});
+    };
+
+    chrome.storage.sync.get("radioJson", function (items) {
+      $http.get('radio_flux.json')
+        .then(function (data) {
+          if (items.hasOwnProperty('radioJson')) {
+            $scope.groupList = items.radioJson;
+            savedGroupList = items.radioJson;
+          } else {
+            $scope.groupList = data.data;
+            savedGroupList = data.data;
+          }
+        });
+    });
   });
